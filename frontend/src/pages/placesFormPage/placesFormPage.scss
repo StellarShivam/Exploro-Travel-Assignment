@@ -1,0 +1,118 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 81%, 47%);
+  --gradientColor: linear-gradient(
+    to right,
+    hsl(187, 85%, 43%),
+    hsl(199, 100%, 33%)
+  );
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl (201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 8%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.places-form {
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem;
+  }
+
+  &__section {
+    margin: 24px 0;
+  }
+
+  &__header {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 24px;
+  }
+
+  &__subheader {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #374151;
+  }
+
+  &__description {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin: 8px 0;
+    font-size: 14px;
+
+    &--textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    &--date {
+      padding: 7px 12px;
+      cursor: pointer;
+
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__dates-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+    margin-bottom: 24px;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__date-input-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__button {
+    background: var(--gradientColor);
+    color: white;
+    padding: 1rem 5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 24px 0;
+    font-weight: 500;
+
+    &:hover {
+      background: var(--SecondaryColor);
+    }
+  }
+}
+
+.save-button-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

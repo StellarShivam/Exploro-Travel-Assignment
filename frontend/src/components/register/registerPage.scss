@@ -1,0 +1,148 @@
+// Variables
+$primary-color: #ff385c;
+$primary-hover: #e61e4d;
+$text-gray: #6b7280;
+$border-gray: #e5e7eb;
+$placeholder-gray: #9ca3af;
+
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 81%, 47%);
+  --gradientColor: linear-gradient(
+    to right,
+    hsl(187, 85%, 43%),
+    hsl(199, 100%, 33%)
+  );
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl (201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 8%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin form-element {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid $border-gray;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.register-container {
+  height: 100vh;
+  @include flex-center;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+
+  .title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: normal;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    input {
+      @include form-element;
+
+      &::placeholder {
+        color: $placeholder-gray;
+      }
+    }
+
+    .checkbox-container {
+      padding: 0 16px;
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+          width: auto;
+          margin-right: 10px;
+          cursor: pointer;
+
+          // Custom checkbox styling
+          appearance: none;
+          -webkit-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid $border-gray;
+          border-radius: 4px;
+          outline: none;
+          transition: all 0.2s;
+          position: relative;
+
+          &:checked {
+            background: var(--gradientColor);
+            border-color: $primary-color;
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: 6px;
+              top: 2px;
+              width: 5px;
+              height: 10px;
+              border: solid white;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
+          }
+        }
+
+        .checkbox-text {
+          color: $text-gray;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .register-button {
+      @include form-element;
+      background: var(--gradientColor);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border: none;
+
+      &:hover {
+        background: var(--SecondaryColor);
+      }
+    }
+
+    .login-text {
+      text-align: center;
+      padding: 16px 0;
+      color: $text-gray;
+
+      .login-link {
+        color: black;
+        text-decoration: underline;
+        margin-left: 5px;
+      }
+    }
+  }
+}

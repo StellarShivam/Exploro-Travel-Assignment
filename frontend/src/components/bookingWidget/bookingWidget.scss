@@ -1,0 +1,203 @@
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 81%, 47%);
+  --gradientColor: linear-gradient(
+    to right,
+    hsl(187, 85%, 43%),
+    hsl(199, 100%, 33%)
+  );
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 8%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.booking-widget {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .price-header {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--textColor);
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .date-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        font-size: 14px;
+        color: var(--textColor);
+        font-weight: 500;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--textColor);
+        background-color: var(--whiteColor);
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--SecondaryColor);
+        }
+
+        &::placeholder {
+          color: var(--greyText);
+        }
+
+        &[type="date"],
+        &[type="month"] {
+          color: var(--textColor);
+          font-family: inherit;
+        }
+
+        &[type="number"] {
+          -moz-appearance: textfield;
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+      }
+
+      select {
+        cursor: pointer;
+
+        &:hover {
+          border-color: var(--SecondaryColor);
+        }
+      }
+    }
+
+    .additional-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--whiteColorDeam);
+    }
+
+    .payment-section {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--textColor);
+        text-align: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--whiteColorDeam);
+      }
+
+      .payment-row {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+
+        @media (max-width: 480px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card-details {
+        background-color: var(--whiteColorDeam);
+        padding: 16px;
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+    }
+
+    .book-button {
+      background: var(--gradientColor);
+      color: var(--whiteColor);
+      border: none;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      span {
+        font-weight: 600;
+        margin-left: 4px;
+      }
+    }
+
+    h4 {
+      text-align: center;
+      color: var(--textColor);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 20px;
+      background-color: var(--whiteColorDeam);
+      border-radius: 8px;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    .price-header {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .booking-form {
+      gap: 16px;
+
+      .input-group {
+        input,
+        select {
+          padding: 10px;
+        }
+      }
+
+      .book-button {
+        padding: 12px;
+        font-size: 14px;
+      }
+    }
+  }
+}

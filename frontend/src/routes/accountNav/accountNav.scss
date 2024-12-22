@@ -1,0 +1,71 @@
+// AccountNav.scss
+$primary-color: #ff385c;
+$gray-background: #e5e7eb;
+$text-white: #ffffff;
+
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 81%, 47%);
+  --gradientColor: linear-gradient(
+    to right,
+    hsl(187, 85%, 43%),
+    hsl(199, 100%, 33%)
+  );
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl (201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 8%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+.account-nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0.5rem;
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    background: $gray-background;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+
+    &.active {
+      background: var(--gradientColor);
+      color: $text-white;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Media query for responsive design
+@media (max-width: 768px) {
+  .account-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+
+    .nav-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

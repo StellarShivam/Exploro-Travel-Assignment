@@ -1,0 +1,107 @@
+// Variables
+$primary-color: #ff385c;
+$primary-hover: #e61e4d;
+$text-gray: #6b7280;
+$border-gray: #e5e7eb;
+$placeholder-gray: #9ca3af;
+
+:root {
+  --PrimaryColor: hsl(199, 100%, 33%);
+  --SecondaryColor: hsl(187, 81%, 47%);
+  --gradientColor: linear-gradient(
+    to right,
+    hsl(187, 85%, 43%),
+    hsl(199, 100%, 33%)
+  );
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl (201, 33%, 16%);
+  --textColor: hsl(240, 4%, 36%);
+  --whiteColorDeam: hsl(0, 8%, 93%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: rgb(239, 239, 239);
+  --bodyColor: rgb(240, 240, 246);
+  --cardBG: rgb(225, 225, 235);
+}
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin input-styles {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid $border-gray;
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $placeholder-gray;
+  }
+}
+
+@mixin button-styles {
+  width: 100%;
+  padding: 14px;
+  background: var(--gradientColor);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  // transition: background-color 0.2s;
+
+  &:hover {
+    background: var(--SecondaryColor);
+  }
+}
+
+// Main Styles
+.login-container {
+  height: 100vh;
+  @include flex-center;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+
+  .title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: normal;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    input {
+      @include input-styles;
+    }
+
+    .login-button {
+      @include button-styles;
+    }
+
+    .register-text {
+      text-align: center;
+      padding: 16px 0;
+      color: $text-gray;
+
+      .register-link {
+        color: black;
+        text-decoration: underline;
+        margin-left: 5px;
+      }
+    }
+  }
+}

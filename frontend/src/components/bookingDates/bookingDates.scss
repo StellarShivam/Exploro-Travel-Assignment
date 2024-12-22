@@ -1,0 +1,64 @@
+.booking-dates {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  font-size: 1.25rem;
+  color: #374151;
+  flex-wrap: wrap;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke-width: 1.5;
+  }
+
+  .nights-count {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    svg {
+      color: #4b5563;
+    }
+  }
+
+  .date-range {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+
+    .date-item {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      svg {
+        color: #4b5563;
+      }
+
+      span {
+        font-size: 1.125rem;
+      }
+    }
+
+    .arrow {
+      margin: 0 0.25rem;
+      color: #6b7280;
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 640px) {
+    font-size: 1rem;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .date-item span {
+      font-size: 1rem;
+    }
+  }
+}
