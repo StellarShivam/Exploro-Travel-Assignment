@@ -8,13 +8,18 @@ import AccountNav from "../../routes/accountNav/AccountNav";
 import { AuthContext } from "../../context/auth-context";
 
 export default function TripBookingsPage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const { id } = useParams();
   const [bookings, setBookings] = useState([]);
   const [trip, setTrip] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const fetchBookings = async () => {
+    const fetchData = async () => {
       try {
+        setLoading(true);
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -22,23 +27,26 @@ export default function TripBookingsPage() {
           },
         };
 
-        const response = await axios.get(
-          `http://localhost:3002/api/booking/getTripBookings/${id}`,
+        const tripResponse = await axios.get(
+          `${apiUrl}/api/trip/getTrip/${id}`,
           config
         );
-        setBookings(response.data.data);
+        setTrip(tripResponse.data.trip);
+
+        const bookingsResponse = await axios.get(
+          `${apiUrl}/api/booking/getTripBookings/${id}`,
+          config
+        );
+        setBookings(bookingsResponse.data.data);
       } catch (err) {
-        alert(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchBookings();
-  }, []);
 
-  useEffect(() => {
-    if (bookings?.length > 0) {
-      setTrip(bookings[0].trip);
-    }
-  }, [bookings]);
+    fetchData();
+  }, [id, auth.token]);
 
   const formatDateWithOrdinal = (dateString) => {
     const date = new Date(dateString);
@@ -63,17 +71,17 @@ export default function TripBookingsPage() {
     }
   };
 
-  const formatBookingDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
 
-  if (!trip) return "";
+  if (error) {
+    return <div className="error">Error: {error}</div>;
+  }
+
+  if (!trip) {
+    return <div className="error">Trip not found</div>;
+  }
 
   return (
     <div className="trip-bookings-page">

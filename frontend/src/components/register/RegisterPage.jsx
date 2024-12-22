@@ -6,6 +6,7 @@ import "./registerPage.scss";
 import { AuthContext } from "../../context/auth-context";
 
 export default function RegisterPage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +25,7 @@ export default function RegisterPage() {
       };
       console.log(role);
       const { data } = await axios.post(
-        "http://localhost:3002/api/users/signup",
+        `${apiUrl}/api/users/signup`,
         { name, email, password, role: role },
         config
       );

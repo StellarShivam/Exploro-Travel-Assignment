@@ -7,7 +7,7 @@
     hsl(199, 100%, 33%)
   );
   --whiteColor: hsl(0, 0%, 100%);
-  --blackColor: hsl (201, 33%, 16%);
+  --blackColor: hsl(201, 33%, 16%);
   --textColor: hsl(240, 4%, 36%);
   --whiteColorDeam: hsl(0, 8%, 93%);
   --greyText: rgb(190, 190, 190);
@@ -17,42 +17,66 @@
 }
 
 .booking-page {
-  //   margin: 2rem 0;
-  padding: 7rem;
+  padding: clamp(1rem, 5vw, 7rem);
+  padding-top: max(8rem, 16vh);
+
+  @media (min-width: 480px) {
+    padding-top: max(7rem, 14vh);
+  }
+
+  @media (min-width: 768px) {
+    padding-top: max(6rem, 12vh);
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: max(5rem, 10vh);
+  }
 
   h1 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 600;
   }
 
   .booking-info {
     background-color: #f3f4f6;
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
     margin: 1.5rem 0;
     border-radius: 1rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
 
     .info-content {
       h2 {
-        font-size: 1.5rem;
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
         margin-bottom: 1rem;
       }
     }
 
     .price-card {
       background: var(--gradientColor);
-      padding: 1.5rem;
+      padding: clamp(1rem, 2vw, 1.5rem);
       border-radius: 1rem;
       color: white;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: auto;
+        min-width: 200px;
+      }
 
       .price-label {
-        font-size: 1rem;
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
       }
 
       .price-amount {
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
         font-weight: 600;
       }
     }

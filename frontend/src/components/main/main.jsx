@@ -12,14 +12,13 @@ import "aos/dist/aos.css";
 import axios from "axios";
 
 const Main = () => {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const [allTrips, setAllTrips] = useState([]);
 
   useEffect(() => {
     const fetchAllTrips = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:3002/api/trip/getAllTrips`
-        );
+        const { data } = await axios.get(`${apiUrl}/api/trip/getAllTrips`);
         setAllTrips(data.trips);
       } catch (e) {
         console.log(e);

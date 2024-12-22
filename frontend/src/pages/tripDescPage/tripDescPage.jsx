@@ -9,6 +9,7 @@ import AddressLink from "../../components/addressLink/AddressLink";
 import { AuthContext } from "../../context/auth-context";
 
 export default function PlacePage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
@@ -22,7 +23,7 @@ export default function PlacePage() {
 
       try {
         const tripResponse = await axios.get(
-          `http://localhost:3002/api/trip/getTrip/${id}`
+          `${apiUrl}/api/trip/getTrip/${id}`
         );
         setTrip(tripResponse.data.trip);
 
@@ -33,7 +34,7 @@ export default function PlacePage() {
             },
           };
           const cartResponse = await axios.get(
-            "http://localhost:3002/api/cart/getCart",
+            `${apiUrl}/api/cart/getCart`,
             cartConfig
           );
           console.log(cartResponse.data);
@@ -64,7 +65,7 @@ export default function PlacePage() {
       };
 
       const response = await axios.post(
-        `http://localhost:3002/api/cart/add`,
+        `${apiUrl}/api/cart/add`,
         {
           tripId: trip._id,
         },

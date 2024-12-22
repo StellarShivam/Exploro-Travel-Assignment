@@ -8,6 +8,7 @@ import "./placesPage.scss";
 import { AuthContext } from "../../context/auth-context";
 
 export default function PlacesPage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const [trips, setTrips] = useState([]);
 
@@ -19,10 +20,7 @@ export default function PlacesPage() {
       },
     };
     try {
-      const { data } = await axios.get(
-        "http://localhost:3002/api/trip/getMyTrips",
-        config
-      );
+      const { data } = await axios.get(`${apiUrl}/api/trip/getMyTrips`, config);
       setTrips(data.trips);
     } catch (error) {
       console.error("Failed to fetch trips:", error);
@@ -55,7 +53,7 @@ export default function PlacesPage() {
 
     try {
       const response = await axios.delete(
-        `http://localhost:3002/api/trip/deleteTrip/${tripId}`,
+        `${apiUrl}/api/trip/deleteTrip/${tripId}`,
         config
       );
 

@@ -7,6 +7,7 @@ import "./profilePage.scss";
 import { AuthContext } from "../../context/auth-context.js";
 
 export default function ProfilePage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const [redirect, setRedirect] = useState(null);
   const [trips, setTrips] = useState([]);
@@ -29,7 +30,7 @@ export default function ProfilePage() {
         },
       };
       const cartResponse = await axios.get(
-        "http://localhost:3002/api/cart/getCart",
+        `${apiUrl}/api/cart/getCart`,
         cartConfig
       );
       setTrips(cartResponse.data);
@@ -47,10 +48,7 @@ export default function ProfilePage() {
           Authorization: "Bearer " + auth.token,
         },
       };
-      await axios.delete(
-        `http://localhost:3002/api/cart/item/${itemId}`,
-        cartConfig
-      );
+      await axios.delete(`${apiUrl}/api/cart/item/${itemId}`, cartConfig);
       setTrips(trips.filter((trip) => trip._id !== itemId));
     } catch (error) {
       console.error("Error removing trip:", error);

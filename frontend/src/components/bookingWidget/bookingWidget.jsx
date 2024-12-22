@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/auth-context";
 import "./bookingWidget.scss";
 
 export default function BookingWidget({ place }) {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -79,7 +80,7 @@ export default function BookingWidget({ place }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3002/api/payment/makePayment",
+        `${apiUrl}/api/payment/makePayment`,
         {
           tripId: place._id,
           numberOfPeople,

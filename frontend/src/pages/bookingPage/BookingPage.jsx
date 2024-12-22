@@ -8,6 +8,7 @@ import "./bookingPage.scss";
 import { AuthContext } from "../../context/auth-context";
 
 export default function BookingPage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const { id } = useParams();
   const [booking, setBooking] = useState(null);
   const auth = useContext(AuthContext);
@@ -23,7 +24,7 @@ export default function BookingPage() {
         };
 
         const response = await axios.get(
-          `http://localhost:3002/api/booking/getBooking/${id}`,
+          `${apiUrl}/api/booking/getBooking/${id}`,
           config
         );
         setBooking(response.data.data);

@@ -8,6 +8,7 @@ import "./placesFormPage.scss";
 import { AuthContext } from "../../context/auth-context";
 
 export default function PlacesFormPage() {
+  const apiUrl = process.env.REACT_APP_BACKEND_URI;
   const auth = useContext(AuthContext);
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -34,21 +35,19 @@ export default function PlacesFormPage() {
         "Content-type": "application/json",
       },
     };
-    axios
-      .get(`http://localhost:3002/api/trip/getTrip/${id}`, config)
-      .then((response) => {
-        const { data } = response;
-        setTitle(data.trip.title);
-        setLocation(data.trip.location);
-        setAddedPhotos(data.trip.photos);
-        setDescription(data.trip.description);
-        setPerks(data.trip.perks);
-        setCancellationPolicy(data.trip.cancellationPolicy);
-        setStartDate(formatDateForInput(data.trip.startDate));
-        setEndDate(formatDateForInput(data.trip.endDate));
-        setSlots(data.trip.slots);
-        setPrice(data.trip.price);
-      });
+    axios.get(`${apiUrl}/api/trip/getTrip/${id}`, config).then((response) => {
+      const { data } = response;
+      setTitle(data.trip.title);
+      setLocation(data.trip.location);
+      setAddedPhotos(data.trip.photos);
+      setDescription(data.trip.description);
+      setPerks(data.trip.perks);
+      setCancellationPolicy(data.trip.cancellationPolicy);
+      setStartDate(formatDateForInput(data.trip.startDate));
+      setEndDate(formatDateForInput(data.trip.endDate));
+      setSlots(data.trip.slots);
+      setPrice(data.trip.price);
+    });
   }, [id]);
 
   function renderHeader(text, description) {
@@ -86,7 +85,7 @@ export default function PlacesFormPage() {
     try {
       if (id) {
         const response = await axios.put(
-          `http://localhost:3002/api/trip/update/${id}`,
+          `${apiUrl}/api/trip/update/${id}`,
           placeData,
           config
         );
@@ -96,7 +95,7 @@ export default function PlacesFormPage() {
         }
       } else {
         const response = await axios.post(
-          "http://localhost:3002/api/trip/createTrip",
+          `${apiUrl}/api/trip/createTrip`,
           placeData,
           config
         );
@@ -150,11 +149,6 @@ export default function PlacesFormPage() {
           value={description}
           onChange={(ev) => setDescription(ev.target.value)}
         />
-
-        {renderHeader("Perks", "select all the perks of your trip")}
-        <div className="places-form__perks">
-          <Perks selected={perks} onChange={setPerks} />
-        </div>
 
         {renderHeader("Cancellation Policy", "Rules for cancellation")}
         <textarea

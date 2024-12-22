@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [redirect, setRedirect] = useState(false);
 
   async function handleLoginSubmit(ev) {
+    const apiUrl = process.env.REACT_APP_BACKEND_URI;
     ev.preventDefault();
     try {
       const config = {
@@ -20,7 +21,7 @@ export default function LoginPage() {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:3002/api/users/signin",
+        `${apiUrl}/api/users/signin`,
         { email, password },
         config
       );
