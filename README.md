@@ -59,6 +59,8 @@ npm start
 
 3. **Authentication:**
    - Unauthenticated users can browse trips but must log in or sign up to book.
+   - const tokenExpirationDate = expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+   - Token expiration time is set to 1hr. which automatically logs out user in 1hr 
 
 4. **Trip Organizer Dashboard:**
    - Enables trip organizers to:
