@@ -134,6 +134,13 @@ npm start
 
 ---
 
+## Backend Database Modal
+
+![Booking Flow 3](https://i.postimg.cc/2jPXnnfJ/mermaid-diagram-2024-12-26-161529.png)
+
+
+---
+
 ## API Documentation
 
 ### **Authentication Endpoints:**
